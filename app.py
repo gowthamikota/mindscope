@@ -50,13 +50,13 @@ def page_not_found(e):
 def serialize_user_data(user_data):
     """Convert non-serializable fields in user_data to serializable types."""
     if user_data:
-        user_data['_id'] = str(user_data['_id'])  # Convert ObjectId to string
+        user_data['_id'] = str(user_data['_id'])  
         if 'created_at' in user_data and isinstance(user_data['created_at'], datetime):
-            user_data['created_at'] = user_data['created_at'].isoformat()  # Convert datetime to string
+            user_data['created_at'] = user_data['created_at'].isoformat()  #
     return user_data
 
 # MongoDB setup
-client = MongoClient(os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/'))
+client = MongoClient(os.environ.get('MONGODB_URI'))
 db = client.mindscope_db
 users_collection = db.users
 password_reset_collection = db.password_resets
