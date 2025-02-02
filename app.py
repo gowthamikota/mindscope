@@ -26,7 +26,11 @@ app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-here')
 
-model = joblib.load('C:\\Users\\GOWTHAMI\\Desktop\\MLPROJECT\\logistic_split_70.pkl') 
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "logistic_split_70.pkl")
+
+model = joblib.load(MODEL_PATH)
 
 @app.errorhandler(404)
 def page_not_found(e):
