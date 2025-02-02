@@ -28,9 +28,6 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-here')
 
 model = joblib.load('C:\\Users\\GOWTHAMI\\Desktop\\MLPROJECT\\logistic_split_70.pkl') 
 
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -43,6 +40,9 @@ def load_user(user_id):
         return User(user_data)
     return None
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 def serialize_user_data(user_data):
     """Convert non-serializable fields in user_data to serializable types."""
     if user_data:
